@@ -154,8 +154,7 @@ void main(void)
 	uart_init();
 	
 	//These strings will be printed in terminal software
-	transmit_string("************************\r\n");
-	transmit_string("******8051 Tests********\r\n");
+	transmit_string("Game On\r\n");
 	
 	
 	lcd_cmd(0x83);
@@ -187,6 +186,8 @@ void main(void)
 										 {
 											 lcd_cmd(cursor_now+1);
 											 lcd_write_char(' ');
+											 lcd_cmd(cursor_now+2);
+											 lcd_write_char(' ');
 											 cursor_now = (cursor_now&(0x0F))|(0x80);
 										 }
 									 }
@@ -203,6 +204,8 @@ void main(void)
 										 if (val!=1)
 										 {
 											 lcd_cmd(cursor_now+1);
+											 lcd_write_char(' ');
+											 lcd_cmd(cursor_now+2);
 											 lcd_write_char(' ');
 											 cursor_now = (cursor_now&(0x0F))|(0xC0);
 										 }

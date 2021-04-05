@@ -37,7 +37,7 @@
 
 #### Demonstration
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_1cxAcCOZtc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![](http://img.youtube.com/vi/_1cxAcCOZtc/0.jpg)](http://www.youtube.com/watch?v=_1cxAcCOZtc "Demonstration")
 
 #### Additional Credits
 1. Prof. V Raj Babu, Prof.  S. Vijayakumaran, Prof. Sachin Patkar and Prof. Dinesh Sharma

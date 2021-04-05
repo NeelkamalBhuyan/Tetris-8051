@@ -36,8 +36,7 @@
 - If a single line block (that can be rotated) becomes 2-line block, and additional cursor is activated to keep track of its position on 2nd line (similar to other 2-line blocks)
 
 #### Demonstration
-
-[![](http://img.youtube.com/vi/_1cxAcCOZtc/0.jpg)](http://www.youtube.com/watch?v=_1cxAcCOZtc "Demonstration")
+[![](http://img.youtube.com/vi/lHs0zsjWFJk/0.jpg)](http://www.youtube.com/watch?v=lHs0zsjWFJk "")
 
 #### Additional Credits
 1. Prof. V Raj Babu, Prof.  S. Vijayakumaran, Prof. Sachin Patkar and Prof. Dinesh Sharma

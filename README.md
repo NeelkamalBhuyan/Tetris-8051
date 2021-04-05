@@ -37,6 +37,7 @@
 
 #### Demonstration
 Click on the image to go to YouTube video
+
 [![](http://img.youtube.com/vi/lHs0zsjWFJk/0.jpg)](http://www.youtube.com/watch?v=lHs0zsjWFJk "")
 
 #### Additional Credits

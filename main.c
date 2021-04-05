@@ -171,7 +171,7 @@ void main(void)
 	//lcd_init();	
 	while (1)
 	{
-		state=0x03;
+		//state=0x03;
 		n1 = 0;
 		n2 = 0;
 		done=0;

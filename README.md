@@ -38,8 +38,7 @@
 #### Demonstration
 Click on the image to go to YouTube video
 
-[![](http://img.youtube.com/vi/lHs0zsjWFJk/0.jpg)](http://www.youtube.com/watch?v=lHs0zsjWFJk "")
-
+[![](http://img.youtube.com/vi/FZ_vSeb56PM/0.jpg)](http://www.youtube.com/watch?v=FZ_vSeb56PM "")
 #### Additional Credits
 1. Prof. V Raj Babu, Prof.  S. Vijayakumaran, Prof. Sachin Patkar and Prof. Dinesh Sharma
 2. EE337 TAs for providing [LCD header file](https://github.com/NeelkamalBhuyan/Tetris-8051/blob/main/lcd.h) and [Serial Comm file](https://github.com/NeelkamalBhuyan/Tetris-8051/blob/main/serial.c)

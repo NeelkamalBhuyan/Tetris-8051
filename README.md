@@ -33,7 +33,7 @@
 #### Implementation of rotation of blocks
 - An extra variable (rot) is used to keep track of orientation of block type
 - For different block types, rot has different values and ranges
-- If a single line block (that can be rotated) becomes 2-line block, and additional cursor is activated to keep track of its position on 2nd line (similar to other 2-line blocks)
+- If a single line block (that can be rotated) becomes 2-line block, an additional cursor is activated to keep track of its position on 2nd line (similar to other 2-line blocks)
 
 #### Demonstration
 Click on the image to go to YouTube video

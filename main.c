@@ -8,6 +8,27 @@ char state=0x03;		// LSFR state
 int val;						// Type of block
 int rot=0;					// Type of orientation (when applicable)
 //char t=0x03;
+unsigned int count=0;								// count the time game was played in the counts of 10ms
+unsigned int score=0;								// final score of each game
+
+void timer_init(void)					// timer 0 parameters initialisation
+{
+	//TMOD = 0x21;							// uart_init() function has initialisation for both timer 0 and timer 1, so no need to do here
+	TH0 = 0xB1;									// timer 0 has been set to run for 10ms
+	TL0 = 0xE0;
+	//EA  = 1;									// uart_init() has global interrupt enable already in it. So no need to do here
+	ET0 = 1;
+	TR0 = 1;
+}
+
+void score_count(void) interrupt 1
+{
+	TR0 = 0;
+	TH0 = 0xB1;																// reload timer value registers
+	TL0 = 0xE0;
+	count = count+1;													// update count
+	TR0=1;
+}
 
 char print_block_init(char cursor)
 {
@@ -138,8 +159,9 @@ char print_block_init(char cursor)
 void main(void)
 {
 	unsigned int max_score = 0;					// highest score
-	char a1;														// first digit of score in ASCII
-	char a0;														// second digit of score in ASCII
+	char a2;														// first digit of score in ASCII
+	char a1;														// second digit of score in ASCII
+	char a0;														// third digit of score in ASCII
 	unsigned char n1 = 0;								// keep track of upper nibble of prev_cursor1, if equal to 9, prev_cursor1 has crossed LCD
 	unsigned char n2 = 0;								// keep track of upper nibble of prev_cursor2, if equal to 13 (=0x0D), prev_cursor1 has crossed LCD
 	char m1 = 0;												// keep track of upper nibble of prev_cursor1, for line change purposes
@@ -152,7 +174,7 @@ void main(void)
 	char prev_cursor2 = 0xC0-1;					// used for keeping track of how far we can go on Line 2 of LCD
 	char cursor_alt = 0xFF;							// keeps track of leftmost most position of block on 2nd line of LCD, not active for 1-line blocks
 	//char a,b = 0x00;
-	unsigned int count=0;								// count number of blocks present on the LCD = score
+	//unsigned int count=0;								// count number of blocks present on the LCD = score
 	//unsigned char score[5];
 	//Initialize port P1 for output from P1.7-P1.4
 	P1 = 0x0F;
@@ -160,6 +182,7 @@ void main(void)
 	//Call initialization functions
 	lcd_init();
 	uart_init();
+	timer_init();
 	
 	//These strings will be printed in terminal software
 	//transmit_string("Game On\r\n");
@@ -409,28 +432,35 @@ void main(void)
 						if (n1==9 || n2==13)															// n1=9 OR n2=13 (0x0D) implies prev_cursor1>0x8F OR prev_cursor2>0xCF, implying LCD is full
 						{
 							done=1;																					// LCD is full, so current game is finished
-							if (max_score<count)														// highest score updated
+							score = count/100;															// count = number of 10ms cycles, so score is count/100 as 1 second = 100*10ms
+							if (max_score<score)														// highest score updated
 							{
-								max_score = count;
+								max_score = score;
 							}
 							lcd_init();																			// clear screen
 							//msdelay(10);
 							lcd_cmd(0x83);
 							lcd_write_string("Score=");
-							a1 = 48 + (count/10);														// first digit of score
-							a0 = 48 + (count%10);														// second digit of score
+							a2 = 48 + (score/100);
+							a1 = 48 + ((score%100)/10);														// first digit of score
+							a0 = 48 + (score%10);														// second digit of score
 							lcd_cmd(0x8A);
-							lcd_write_char(a1);
+							lcd_write_char(a2);
 							lcd_cmd(0x8B);
+							lcd_write_char(a1);
+							lcd_cmd(0x8C);
 							lcd_write_char(a0);
 							
 							lcd_cmd(0xC1);
 							lcd_write_string("Max Score=");
-							a1 = 48 + (max_score/10);												// first digit of highest score
+							a2 = 48 + (max_score/100);
+							a1 = 48 + ((max_score%100)/10);												// first digit of highest score
 							a0 = 48 + (max_score%10);												// second digit of highest score
 							lcd_cmd(0xCC);
-							lcd_write_char(a1);
+							lcd_write_char(a2);
 							lcd_cmd(0xCD);
+							lcd_write_char(a1);
+							lcd_cmd(0xCE);
 							lcd_write_char(a0);
 							
 							msdelay(5000);																	// display that for 5 seconds
@@ -438,7 +468,7 @@ void main(void)
 							
 							break;																					// break out of while loop
 						}
-						count = count+1;																	// score updated, note that this does not get execcuted if LCD gets full
+						//count = count+1;																	// score updated, note that this does not get execcuted if LCD gets full
 						break;																						// break of current block cycle
 					}
 				}

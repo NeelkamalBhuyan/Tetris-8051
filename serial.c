@@ -13,7 +13,7 @@ bit tx_complete = 0,rx_complete = 0; //Bit flags for interrupts
 ***********************************************************/	
 void uart_init(void)
 {
-	TMOD=0x20;			//Configure Timer 1 in Mode 2
+	TMOD=0x21;			//Configure Timer 1 in Mode 2
 	TH1=204;					//Load TH1 to obtain require Baudrate (Refer Serial.pdf for calculations)
 	SCON=0x40;			//Configure UART peripheral for 8-bit data transfer 
 	TCON=0x40;								//Start Timer 1

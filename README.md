@@ -16,7 +16,7 @@
 - Pseudo random block generator using [LSFR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
 - 'q' to go up, 'a' to go down and 'r' to change orientation of block
 - Game ends when incoming block cannot be accomodated in the display
-- When current game ends, score is displayed, which is the number of blocks player could accomodate on the screen, along with highest score until then
+- When current game ends, score is displayed, which is the number of seconds player could play current game, along with highest score until then
 - Game restarts, with highest score saved
 
 #### Basic Methodology

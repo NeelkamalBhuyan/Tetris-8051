@@ -1,5 +1,5 @@
 # Tetris-8051
-## Tetris game on 8051 microcontroller
+## Tetris game on 8051 microcontroller by Neelkamal Bhuyan
 #### Basic components used
 - Programming in C
 - AT89C5131A microcontroller board
